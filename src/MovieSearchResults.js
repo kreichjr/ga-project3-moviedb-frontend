@@ -11,6 +11,8 @@ class MovieSearchResults extends Component {
           alt='movie film and popcorn'
         />
         <p>Search a film by Title or IMDB Number</p>
+        <input type="text" placeholder="Title or IMDB"></input>
+        <input type="button" value="Search"></input>
       </div>
     )
   }
