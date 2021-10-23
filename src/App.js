@@ -7,9 +7,14 @@ class App extends Component {
     super(props)
 
     this.state = {
-      baseURL: '',
-      query: '',
-      apikey: `api_key=${process.env.REACT_APP_API_KEY}`,
+      baseURL: 'https://omdbapi.com/?',
+      query: 's=',
+      apikey: `&apikey=${process.env.REACT_APP_API_KEY}`,
+      searchURL: '',
+      titleSearchField: '',
+      movieList: [],
+
+
       title: '',
       year: '',
       posterURL: '',
@@ -17,20 +22,58 @@ class App extends Component {
       imdbId: '',
       rated: '',
       runtime: '',
-      hasWatched: Boolean,
-      // I think the boolean part might be wrong
+      hasWatched: true,
     }
+  }
+
+  handleChange = (event) => {
+    // console.log(event.target.id)
+    this.setState({
+      [event.target.id]: event.target.value,
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.setState(
+      {
+        searchURL:
+          this.state.baseURL +
+          this.state.query +
+          this.state.titleSearchField +
+          this.state.apikey,
+      },
+      () => {
+        console.log(this.state.searchURL)
+        fetch(this.state.searchURL)
+          .then((response) => {
+            return response.json()
+          }).then(
+            (json) =>
+              this.setState({
+                movieList: json,
+                titleSearchField: '',
+              }),
+            (err) => console.log(err)
+          )
+      }
+    )
   }
 
   render() {
     // console.log(process.env)
     console.log(this.state)
+// console.log(this.state.titleSearchField)
     return (
       <>
-        <MovieSearchResults />
+        <MovieSearchResults handleChange={this.handleChange} title={this.state.titleSearchField}  handleSubmit={this.handleSubmit}/>
       </>
     )
   }
 }
+
+
+ 
+
 
 export default App
