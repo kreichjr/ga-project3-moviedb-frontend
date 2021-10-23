@@ -1,6 +1,7 @@
 import './App.css'
 import React, { Component } from 'react'
 import MovieSearchResults from './MovieSearchResults'
+import MovieSearchDisplay from './MovieSearchDisplay'
 
 class App extends Component {
   constructor(props) {
@@ -47,13 +48,24 @@ class App extends Component {
         console.log(this.state.searchURL)
         fetch(this.state.searchURL)
           .then((response) => {
+            console.log(response)
             return response.json()
           }).then(
-            (json) =>
-              this.setState({
-                movieList: json,
-                titleSearchField: '',
-              }),
+            (json) => {
+              console.log(json)
+              if (json.Response === 'True'){
+                this.setState({
+                  movieList: json.Search,
+                  titleSearchField: '',
+                  errMsg: '',
+                })
+              } else {
+                this.setState({
+                  movieList: [],
+                  errMsg: json.Error
+                })
+              }
+              },
             (err) => console.log(err)
           )
       }
@@ -62,18 +74,26 @@ class App extends Component {
 
   render() {
     // console.log(process.env)
-    console.log(this.state)
+    // console.log(this.state)
 // console.log(this.state.titleSearchField)
     return (
       <>
-        <MovieSearchResults handleChange={this.handleChange} title={this.state.titleSearchField}  handleSubmit={this.handleSubmit}/>
+        <MovieSearchResults
+          handleChange={this.handleChange}
+          title={this.state.titleSearchField}
+          handleSubmit={this.handleSubmit}
+        />
+        {this.state.errMsg}
+        <div className='container-fluid movie-app'>
+          <div className='row'>
+            {this.state.movieList.length > 0 && <MovieSearchDisplay movieList={this.state.movieList} />}
+          </div>
+        </div>
       </>
     )
   }
 }
 
-
- 
 
 
 export default App
