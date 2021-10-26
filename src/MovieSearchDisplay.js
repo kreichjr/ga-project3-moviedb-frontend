@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import './ModalStyling.css';
 
+
 // pass in the array movielist as the prop
 
 const MovieSearchDisplay = (props) => {
