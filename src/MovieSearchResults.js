@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import './ModalStyling.css';
 
 class MovieSearchResults extends Component {
   constructor(props){
