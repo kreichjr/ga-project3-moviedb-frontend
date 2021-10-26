@@ -1,7 +1,12 @@
-import './App.css'
-import React, { Component } from 'react'
-import MovieSearchResults from './MovieSearchResults'
-import MovieSearchDisplay from './MovieSearchDisplay'
+
+import './App.css';
+import './ModalStyling.css';
+import React, { Component } from 'react';
+import MovieSearchResults from './MovieSearchResults';
+import MovieSearchDisplay from './MovieSearchDisplay';
+import DisplayModal from './DisplayModal';
+import MovieModal from './MovieModal';
+
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +19,9 @@ class App extends Component {
       searchURL: '',
       titleSearchField: '',
       movieList: [],
+
+      modalOpen: false,
+
 
 
       title: '',
@@ -88,6 +96,10 @@ class App extends Component {
           <div className='row'>
             {this.state.movieList.length > 0 && <MovieSearchDisplay movieList={this.state.movieList} />}
           </div>
+
+          <MovieModal/>
+          <DisplayModal/>
+
         </div>
       </>
     )
