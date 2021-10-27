@@ -8,16 +8,21 @@ import './ModalStyling.css';
 
 const MovieSearchDisplay = (props) => {
   // console.log(props)
+
   return (
     <>
       {props.movieList.map((movie, index) => (
 
-        <div className='container-fluid' key={index}>
+        <div key={index}>
+          
           {
             (movie.Poster === 'N/A' && <img src={missing} alt='movie poster missing' onClick={() => {props.handlePosterClick(movie.imdbID)}}/> ) || 
             <img src={movie.Poster} alt ="movie" onClick={() => {props.handlePosterClick(movie.imdbID)}}/>
           }
-
+          <br/>
+          
+            <h3>{movie.Title.length <= 28 ? movie.Title : movie.Title.substring(0, 25) + '...'}</h3>
+          
         </div>
       ))}
     </>

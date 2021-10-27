@@ -6,7 +6,7 @@ import MovieSearchResults from './MovieSearchResults';
 import MovieSearchDisplay from './MovieSearchDisplay';
 import DisplayModal from './DisplayModal';
 
-
+const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3003/favorites'
 
 class App extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ class App extends Component {
 
       modalOpen: false,
       selectedMovie: {},
+      favorites: [],
 
 
 
@@ -110,11 +111,57 @@ class App extends Component {
     })
   }
 
+  addToFavs = ({Title, Year, Poster, Language, imdbID, Rated, Runtime}) => {
+    const newFav = {
+      title: Title,
+      year: Year,
+      posterUrl: Poster,
+      language: Language,
+      imdbId: imdbID,
+      rated: Rated,
+      runtime: Runtime,
+      hasWatched: true
+    }
+    const url = `${backendUrl}`
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(newFav),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(createdFavorite => {
+      const copiedFavorites = [...this.state.favorites, createdFavorite]
+      this.setState({
+        favorites: copiedFavorites
+      })
+    })
+  }
+
+  getFavorites = () => {
+    const url = `${backendUrl}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      this.setState({
+        favorites: data
+      })
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
+  componentDidMount() {
+    this.getFavorites()
+  }
+
   render() {
     // console.log(process.env)
     // console.log(this.state)
     // console.log(this.state.titleSearchField)
-    console.log(this.state.selectedMovie)
+    // console.log(this.state.selectedMovie)
+    console.log(this.state.favorites)
     return (
       <>
         <MovieSearchResults
@@ -126,7 +173,11 @@ class App extends Component {
         <div className='container-fluid movie-app'>
 
           <div className='container-fluid'>
-            {this.state.movieList.length > 0 && <MovieSearchDisplay movieList={this.state.movieList} handlePosterClick={this.handlePosterClick}/>}
+            {this.state.movieList.length > 0 && 
+              <MovieSearchDisplay 
+                movieList={this.state.movieList} 
+                handlePosterClick={this.handlePosterClick}
+              />}
           </div>
 
           
@@ -135,7 +186,7 @@ class App extends Component {
             closeModal={this.closeModal} 
             show={this.state.modalOpen}
             movie={this.state.selectedMovie}
-
+            addToFavs={this.addToFavs}
           />
 
 
