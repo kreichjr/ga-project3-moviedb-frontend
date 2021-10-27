@@ -1,4 +1,39 @@
-img{
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(https://media.istockphoto.com/vectors/movie-time-vector-illustration-cinema-poster-concept-on-red-round-vector-id911590226?k=20&m=911590226&s=612x612&w=0&h=HlJtSKF-fLsKFy1QJ-EVnxXkktBKNS-3jUQPXsSasYs=)
+      center/cover no-repeat fixed;
+  position: relative;
+  overflow-x: hidden;
+
+  font-family: 'Rampart One', cursive;
+}
+
+.logo {
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  padding-top: 30px;
+}
+
+input {
+  width: 50%;
+  border: 10px solid #0aa7c0;
+  margin: 20px;
+  padding: 20px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  font-size: 20px;
+}
+
+.inputBtn {
+  background-color: red;
+  width: 15%;
+}
+
+img {
   height: 400px;
   width: 300px;
 }
@@ -7,18 +42,19 @@ img{
   text-align: center;
 }
 .container-fluid {
-background-color: rgb(0, 247, 255);
-justify-content: space-around;
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-gap: 10px;
-padding-top: 2%;
-margin-top: 5px;
-margin-left: 5px;
-margin-right: 5px;
-max-width: 2000px;
+  background-color: #a5a5b1;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 2%;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  max-width: 2000px;
 }
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
