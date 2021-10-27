@@ -7,14 +7,16 @@ import './ModalStyling.css';
 const MovieModal = ({ handleClose, show, children, movie }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
   const movieInfo = []
-  Object.keys(movie).forEach((key) => movieInfo.push(`${key}: ${movie[key]}`))
+  Object.keys(movie).forEach((key) => {
+    if (key != 'Poster' && key != 'Response') {
+      movieInfo.push(`${key}: ${movie[key]}`)
+    }
+  })
   
-  
-
-
   return (
     <div className={showHideClassName}>
       <section className="modal-view">
+        <img src={movie.Poster} alt='movie poster'/>
         <ul>
           {movieInfo.map((info, i)=><li key={i}>{info}</li>)} 
         </ul>
