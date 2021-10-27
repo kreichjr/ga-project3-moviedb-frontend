@@ -10,7 +10,7 @@ const MovieSearchDisplay = (props) => {
   return (
     <>
       {props.movieList.map((movie, index) => (
-        <div className='' key={index}>
+        <div className='container-fluid' key={index}>
           {(movie.Poster === 'N/A' && 'poster missing' )|| <img src={movie.Poster} alt ="movie"/>}
         </div>
       ))}

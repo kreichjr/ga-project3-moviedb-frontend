@@ -7,6 +7,7 @@ import './ModalStyling.css';
 const MovieModal = ({ handleClose, show, children }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
 
+
   return (
     <div className={showHideClassName}>
       <section className="modal-view">

@@ -93,11 +93,10 @@ class App extends Component {
         />
         {this.state.errMsg}
         <div className='container-fluid movie-app'>
-          <div className='row'>
+          <div className='container-fluid'>
             {this.state.movieList.length > 0 && <MovieSearchDisplay movieList={this.state.movieList} />}
           </div>
 
-          <MovieModal/>
           <DisplayModal/>
 
         </div>
