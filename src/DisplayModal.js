@@ -5,10 +5,15 @@ import MovieModal from './MovieModal';
 import './ModalStyling.css';
 
 function DisplayModal(props) {
-  console.log('props', props)
+  // console.log('props', props)
   return (
     <main>
-      <MovieModal show={props.show} handleClose={props.closeModal} movie={props.movie}>
+      <MovieModal 
+        show={props.show} 
+        handleClose={props.closeModal} 
+        movie={props.movie}
+        addToFavs={props.addToFavs}
+      >
         <p>Modal</p>
       </MovieModal>
     </main>
