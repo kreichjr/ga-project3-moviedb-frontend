@@ -161,24 +161,33 @@ class App extends Component {
     // console.log(this.state)
     // console.log(this.state.titleSearchField)
     // console.log(this.state.selectedMovie)
-    console.log(this.state.favorites)
+    console.log('Favorites array: ', this.state.favorites)
     return (
       <>
-        <MovieSearchResults
-          handleChange={this.handleChange}
-          title={this.state.titleSearchField}
-          handleSubmit={this.handleSubmit}
-        />
-        {this.state.errMsg}
-        <div className='container-fluid movie-app'>
+        <div className='App'>
+          <img
+            className='logo'
+            src='https://i.imgur.com/wlPqD4c.png'
+            alt='movie film and popcorn'
+          />
+          <MovieSearchResults
+            handleChange={this.handleChange}
+            title={this.state.titleSearchField}
+            handleSubmit={this.handleSubmit}
+          />
+          {this.state.errMsg}
+        </div>
+        
+        <div className='movie-app'>
 
-          <div className='container-fluid'>
-            {this.state.movieList.length > 0 && 
-              <MovieSearchDisplay 
-                movieList={this.state.movieList} 
-                handlePosterClick={this.handlePosterClick}
-              />}
-          </div>
+          
+          {this.state.movieList.length > 0 && 
+            <MovieSearchDisplay 
+              movieList={this.state.movieList} 
+              handlePosterClick={this.handlePosterClick}
+            />
+          }
+          
 
           
           <DisplayModal 

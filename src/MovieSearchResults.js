@@ -10,28 +10,23 @@ class MovieSearchResults extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <img
-          className='logo'
-          src='https://i.imgur.com/wlPqD4c.png'
-          alt='movie film and popcorn'
-        />
+      <>
         <p>Search a film by Title</p>
         <input
           className='inputText'
           type='text'
           id='titleSearchField'
-          placeholder='Title'
+          placeholder='Enter Movie Title...'
           onChange={this.props.handleChange}
           value={this.props.title}
         ></input>
         <input
           className='inputBtn'
           type='button'
-          value='Search'
+          value='Click to Search'
           onClick={this.props.handleSubmit}
         ></input>
-      </div>
+      </>
     )
   }
 }
