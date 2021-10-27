@@ -10,7 +10,7 @@ const MovieSearchDisplay = (props) => {
   // console.log(props)
 
   return (
-    <>
+    <div className='container-fluid'>
       {props.movieList.map((movie, index) => (
 
         <div key={index}>
@@ -25,7 +25,7 @@ const MovieSearchDisplay = (props) => {
           
         </div>
       ))}
-    </>
+    </div>
   )
 }
 
