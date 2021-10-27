@@ -5,8 +5,8 @@ import MovieModal from './MovieModal';
 import './ModalStyling.css';
 
 class DisplayModal extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       show: false
     };
@@ -15,20 +15,22 @@ class DisplayModal extends Component {
     }
 
     showModal = () => {
-    this.setState({ show: true });
+      this.props.setModalOpen(true)
+      this.setState({ show: true });
     };
 
     hideModal = () => {
-    this.setState({ show: false });
+      this.props.setModalOpen(false)
+      this.setState({ show: false });
     };
     
     render() {
         return (
           <main>
             <h1>React Modal</h1>
-            <MovieModal show={this.state.show} handleClose={this.hideModal}>
-          <p>Modal</p>
-        </MovieModal>
+            <MovieModal show={this.state.show} handleClose={this.hideModal} movie={this.props.movie}>
+              <p>Modal</p>
+            </MovieModal>
             <button type="button" onClick={this.showModal}>
               Open
             </button>

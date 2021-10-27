@@ -1,4 +1,5 @@
 import React from 'react'
+import missing from './images/imgNotFound.jpg'
 import './App.css'
 import './ModalStyling.css';
 
@@ -10,8 +11,13 @@ const MovieSearchDisplay = (props) => {
   return (
     <>
       {props.movieList.map((movie, index) => (
+
         <div className='container-fluid' key={index}>
-          {(movie.Poster === 'N/A' && 'poster missing' )|| <img src={movie.Poster} alt ="movie"/>}
+          {
+            (movie.Poster === 'N/A' && <img src={missing} alt='movie poster missing' onClick={() => {props.handlePosterClick(movie.imdbID)}}/> ) || 
+            <img src={movie.Poster} alt ="movie" onClick={() => {props.handlePosterClick(movie.imdbID)}}/>
+          }
+
         </div>
       ))}
     </>
