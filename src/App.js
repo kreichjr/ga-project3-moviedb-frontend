@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import MovieSearchResults from './MovieSearchResults';
 import MovieSearchDisplay from './MovieSearchDisplay';
 import DisplayModal from './DisplayModal';
-import MovieModal from './MovieModal';
+
 
 
 class App extends Component {
@@ -13,14 +13,16 @@ class App extends Component {
     super(props)
 
     this.state = {
-      baseURL: 'https://omdbapi.com/?',
-      query: 's=',
+      omdbBaseUrl: 'https://omdbapi.com/?',
+      searchQueryTag: 's=',
+      idQueryTag: 'i=',
       apikey: `&apikey=${process.env.REACT_APP_API_KEY}`,
       searchURL: '',
       titleSearchField: '',
       movieList: [],
 
       modalOpen: false,
+      selectedMovie: {},
 
 
 
@@ -47,8 +49,8 @@ class App extends Component {
     this.setState(
       {
         searchURL:
-          this.state.baseURL +
-          this.state.query +
+          this.state.omdbBaseUrl +
+          this.state.searchQueryTag +
           this.state.titleSearchField +
           this.state.apikey,
       },
@@ -80,10 +82,30 @@ class App extends Component {
     )
   }
 
+  handlePosterClick = (id) => {
+    if (this.state.modalOpen) return  // If the modal is open, don't do anything
+    const url = `${this.state.omdbBaseUrl}${this.state.idQueryTag}${id}${this.state.apikey}`
+    
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        selectedMovie: data
+      })
+    })  
+  }
+
+  setModalOpen = (state) => {
+    this.setState({
+      modalOpen: state
+    })
+  }
+
   render() {
     // console.log(process.env)
     // console.log(this.state)
-// console.log(this.state.titleSearchField)
+    // console.log(this.state.titleSearchField)
+    console.log(this.state.selectedMovie)
     return (
       <>
         <MovieSearchResults
@@ -93,11 +115,14 @@ class App extends Component {
         />
         {this.state.errMsg}
         <div className='container-fluid movie-app'>
+
           <div className='container-fluid'>
-            {this.state.movieList.length > 0 && <MovieSearchDisplay movieList={this.state.movieList} />}
+            {this.state.movieList.length > 0 && <MovieSearchDisplay movieList={this.state.movieList} handlePosterClick={this.handlePosterClick}/>}
           </div>
 
-          <DisplayModal/>
+          
+          <DisplayModal setModalOpen={this.setModalOpen} movie={this.state.selectedMovie}/>
+
 
         </div>
       </>
