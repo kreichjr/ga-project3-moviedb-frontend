@@ -84,6 +84,8 @@ class App extends Component {
 
   handlePosterClick = (id) => {
     if (this.state.modalOpen) return  // If the modal is open, don't do anything
+    
+
     const url = `${this.state.omdbBaseUrl}${this.state.idQueryTag}${id}${this.state.apikey}`
     
     fetch(url)
@@ -92,12 +94,19 @@ class App extends Component {
       this.setState({
         selectedMovie: data
       })
-    })  
+    })
+    setTimeout(() => {this.openModal()}, 100)  // janky way to prevent modal from showing with old data briefly
   }
 
-  setModalOpen = (state) => {
+  closeModal = () => {
     this.setState({
-      modalOpen: state
+      modalOpen: false
+    })
+  }
+
+  openModal = () => {
+    this.setState({
+      modalOpen: true
     })
   }
 
@@ -121,7 +130,13 @@ class App extends Component {
           </div>
 
           
-          <DisplayModal setModalOpen={this.setModalOpen} movie={this.state.selectedMovie}/>
+          <DisplayModal 
+            openModal={this.openModal} 
+            closeModal={this.closeModal} 
+            show={this.state.modalOpen}
+            movie={this.state.selectedMovie}
+
+          />
 
 
         </div>
