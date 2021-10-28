@@ -25,7 +25,7 @@ const FavoriteDisplay = (props) => {
             <input 
               id="viewed-checkbox"
               type="checkbox" 
-              onClick={() => {props.toggleCheckbox(movie._id, movie.hasWatched)}}
+              onChange={() => {props.toggleCheckbox(movie._id, movie.hasWatched)}}
               checked={movie.hasWatched ? 'checked': ''} 
             />
             <label htmlFor="viewed-checkbox">Viewed</label>

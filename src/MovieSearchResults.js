@@ -27,6 +27,12 @@ class MovieSearchResults extends Component {
             value='Search'
             onClick={this.props.handleSubmit}
           ></input>
+          <button
+            className='searchAndBtnRow showfav'
+            onClick={this.props.toggleSearch}
+          >
+            {this.props.showSearch ? 'Show Favorites' : 'Show Movie Search'}
+          </button>
         </div>
       </>
     )
