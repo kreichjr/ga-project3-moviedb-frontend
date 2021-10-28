@@ -1,11 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+  /* background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url(https://media.istockphoto.com/vectors/movie-time-vector-illustration-cinema-poster-concept-on-red-round-vector-id911590226?k=20&m=911590226&s=612x612&w=0&h=HlJtSKF-fLsKFy1QJ-EVnxXkktBKNS-3jUQPXsSasYs=)
       center/cover no-repeat fixed;
   position: relative;
   overflow-x: hidden;
 
+  font-family: 'Roboto', sans-serif; */
+
+  /* background-image: 'https://imgur.com/dXB5cfN'; */
+  /* background: linear-gradient(rgba(230, 216, 216, 0.6), rgba(225, 206, 206, 0.6)), */
+  background: url(https://imgur.com/dXB5cfN) no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  height: auto;
+  max-width: 720px;
   font-family: 'Roboto', sans-serif;
 }
 
