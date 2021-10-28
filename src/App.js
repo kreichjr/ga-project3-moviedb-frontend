@@ -270,6 +270,8 @@ class App extends Component {
               handlePosterClick={this.handlePosterClick}
               removeFromFavorites={this.removeFromFavorites}
               toggleCheckbox={this.toggleCheckbox}
+              toggleSearch={this.toggleSearch}
+              showSearch={this.state.showSearch}
             />
           )}
           {this.state.errMsg}
