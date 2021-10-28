@@ -255,17 +255,14 @@ class App extends Component {
             src='https://i.imgur.com/wlPqD4c.png'
             alt='movie film and popcorn'
           />
-          <button
-            className='searchAndBtnRow showfav'
-            onClick={this.toggleSearch}
-          >
-            {this.state.showSearch ? 'Show Favorites' : 'Show Movie Search'}
-          </button>
+          
           {this.state.showSearch ? (
             <MovieSearchResults
               handleChange={this.handleChange}
               title={this.state.titleSearchField}
               handleSubmit={this.handleSubmit}
+              toggleSearch={this.toggleSearch}
+              showSearch={this.state.showSearch}
             />
           ) : (
             <FavoriteDisplay
