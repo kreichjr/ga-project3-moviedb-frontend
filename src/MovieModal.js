@@ -9,7 +9,7 @@ const MovieModal = ({ handleClose, show, children, movie, addToFavs }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
   const movieInfo = []
   Object.keys(movie).forEach((key) => {
-    if (key !== 'Poster' && key !== 'Response') {
+    if (key !== 'Poster' && key !== 'Response' && key !== 'Ratings') {
       movieInfo.push(`${key}: ${movie[key]}`)
     }
   })
