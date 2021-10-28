@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 body {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url(https://media.istockphoto.com/vectors/movie-time-vector-illustration-cinema-poster-concept-on-red-round-vector-id911590226?k=20&m=911590226&s=612x612&w=0&h=HlJtSKF-fLsKFy1QJ-EVnxXkktBKNS-3jUQPXsSasYs=)
@@ -7,7 +6,13 @@ body {
   position: relative;
   overflow-x: hidden;
 
-  font-family: 'Rampart One', cursive;
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 800;
 }
 
 .logo {
@@ -29,10 +34,17 @@ input {
 }
 
 .inputBtn {
-  background-color: red;
+  background-color: #fe0001;
+  font-size: 25px;
   width: 15%;
+  height: 20%;
+  transition: background-color 1s;
+  font-weight: bold;
 }
 
+.inputBtn:hover {
+  background-color: #cb0000;
+}
 img {
   height: 400px;
   width: 300px;
@@ -42,7 +54,7 @@ img {
   text-align: center;
 }
 .container-fluid {
-  background-color: #a5a5b1;
+  background-color: #cccccf;
   justify-content: space-around;
   display: flex;
   flex-direction: row;

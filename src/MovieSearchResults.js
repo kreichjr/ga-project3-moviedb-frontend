@@ -11,7 +11,7 @@ class MovieSearchResults extends Component {
   render() {
     return (
       <>
-        <p>Search a film by Title</p>
+        <p></p>
         <input
           className='inputText'
           type='text'
@@ -23,7 +23,7 @@ class MovieSearchResults extends Component {
         <input
           className='inputBtn'
           type='button'
-          value='Click to Search'
+          value='Search'
           onClick={this.props.handleSubmit}
         ></input>
       </>
