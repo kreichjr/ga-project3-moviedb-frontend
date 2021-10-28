@@ -22,6 +22,7 @@ const FavoriteDisplay = (props) => {
           <br/>
           
             <h3>{movie.title.length <= 28 ? movie.title : movie.title.substring(0, 25) + '...'}</h3>
+            <button onClick={()=>{props.removeFromFavorites(movie._id)}}>Remove from Favorites</button>
           
         </div>
       ))}
