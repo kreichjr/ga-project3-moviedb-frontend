@@ -1,12 +1,12 @@
+import './App.css'
+import './ModalStyling.css'
+import React, { Component } from 'react'
+import MovieSearchResults from './MovieSearchResults'
+import MovieSearchDisplay from './MovieSearchDisplay'
+import DisplayModal from './DisplayModal'
 
-import './App.css';
-import './ModalStyling.css';
-import React, { Component } from 'react';
-import MovieSearchResults from './MovieSearchResults';
-import MovieSearchDisplay from './MovieSearchDisplay';
-import DisplayModal from './DisplayModal';
-
-const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3003/favorites'
+const backendUrl =
+  process.env.REACT_APP_BACKEND_URL || 'http://localhost:3003/favorites'
 
 class App extends Component {
   constructor(props) {
@@ -24,8 +24,6 @@ class App extends Component {
       modalOpen: false,
       selectedMovie: {},
       favorites: [],
-
-
 
       title: '',
       year: '',
@@ -61,10 +59,11 @@ class App extends Component {
           .then((response) => {
             console.log(response)
             return response.json()
-          }).then(
+          })
+          .then(
             (json) => {
               console.log(json)
-              if (json.Response === 'True'){
+              if (json.Response === 'True') {
                 this.setState({
                   movieList: json.Search,
                   titleSearchField: '',
@@ -73,10 +72,10 @@ class App extends Component {
               } else {
                 this.setState({
                   movieList: [],
-                  errMsg: json.Error
+                  errMsg: json.Error,
                 })
               }
-              },
+            },
             (err) => console.log(err)
           )
       }
@@ -84,34 +83,35 @@ class App extends Component {
   }
 
   handlePosterClick = (id) => {
-    if (this.state.modalOpen) return  // If the modal is open, don't do anything
-    
+    if (this.state.modalOpen) return // If the modal is open, don't do anything
 
     const url = `${this.state.omdbBaseUrl}${this.state.idQueryTag}${id}${this.state.apikey}`
-    
+
     fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({
-        selectedMovie: data
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          selectedMovie: data,
+        })
       })
-    })
-    setTimeout(() => {this.openModal()}, 100)  // janky way to prevent modal from showing with old data briefly
+    setTimeout(() => {
+      this.openModal()
+    }, 100) // janky way to prevent modal from showing with old data briefly
   }
 
   closeModal = () => {
     this.setState({
-      modalOpen: false
+      modalOpen: false,
     })
   }
 
   openModal = () => {
     this.setState({
-      modalOpen: true
+      modalOpen: true,
     })
   }
 
-  addToFavs = ({Title, Year, Poster, Language, imdbID, Rated, Runtime}) => {
+  addToFavs = ({ Title, Year, Poster, Language, imdbID, Rated, Runtime }) => {
     const newFav = {
       title: Title,
       year: Year,
@@ -120,36 +120,37 @@ class App extends Component {
       imdbId: imdbID,
       rated: Rated,
       runtime: Runtime,
-      hasWatched: true
+      hasWatched: true,
     }
     const url = `${backendUrl}`
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(newFav),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
-    .then(res => res.json())
-    .then(createdFavorite => {
-      const copiedFavorites = [...this.state.favorites, createdFavorite]
-      this.setState({
-        favorites: copiedFavorites
+      .then((res) => res.json())
+      .then((createdFavorite) => {
+        const copiedFavorites = [...this.state.favorites, createdFavorite]
+        this.setState({
+          favorites: copiedFavorites,
+        })
       })
-    })
   }
 
   getFavorites = () => {
     const url = `${backendUrl}`
     fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      this.setState({
-        favorites: data
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          favorites: data,
+        })
       })
-    }).catch(err => {
-      console.log(err)
-    })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   componentDidMount() {
@@ -177,34 +178,26 @@ class App extends Component {
           />
           {this.state.errMsg}
         </div>
-        
-        <div className='movie-app'>
 
-          
-          {this.state.movieList.length > 0 && 
-            <MovieSearchDisplay 
-              movieList={this.state.movieList} 
+        <div className='movie-app'>
+          {this.state.movieList.length > 0 && (
+            <MovieSearchDisplay
+              movieList={this.state.movieList}
               handlePosterClick={this.handlePosterClick}
             />
-          }
-          
+          )}
 
-          
-          <DisplayModal 
-            openModal={this.openModal} 
-            closeModal={this.closeModal} 
+          <DisplayModal
+            openModal={this.openModal}
+            closeModal={this.closeModal}
             show={this.state.modalOpen}
             movie={this.state.selectedMovie}
             addToFavs={this.addToFavs}
           />
-
-
         </div>
       </>
     )
   }
 }
-
-
 
 export default App
