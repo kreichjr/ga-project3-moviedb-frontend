@@ -95,10 +95,18 @@ class App extends Component {
     const url = `${this.state.omdbBaseUrl}${this.state.idQueryTag}${id}${this.state.apikey}`
 
     fetch(url)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 400) throw new Error('There was an error getting data from the OMDB API')
+        return response.json()
+      })
       .then((data) => {
         this.setState({
           selectedMovie: data,
+        })
+      })
+      .catch(err => {
+        this.setState({
+          errMsg: err
         })
       })
     setTimeout(() => {
@@ -137,11 +145,19 @@ class App extends Component {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 400) throw new Error('There was an error creating a new favorite.')
+        return res.json()
+      })
       .then((createdFavorite) => {
         const copiedFavorites = [...this.state.favorites, createdFavorite]
         this.setState({
           favorites: copiedFavorites,
+        })
+      })
+      .catch(err => {
+        this.setState({
+          errMsg: err
         })
       })
   }
@@ -149,15 +165,41 @@ class App extends Component {
   getFavorites = () => {
     const url = `${backendUrl}`
     fetch(url)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 400) throw new Error('There was an error getting the favorites list.')
+        return res.json()
+      })
       .then((data) => {
         this.setState({
           favorites: data,
         })
       })
       .catch((err) => {
-        console.log(err)
+        this.setState({
+          errMsg: err
+        })
       })
+  }
+
+  removeFromFavorites = (id) => {
+    const url = `${backendUrl}/${id}`
+    fetch(url, {
+      method: 'DELETE',
+    })
+    .then(res => {
+      if (res.status === 400) throw new Error('There was an error deleting an item from your favorites list.')
+      const foundIndex = this.state.favorites.findIndex(favorite => favorite._id === id)
+      const copiedFavorites = [...this.state.favorites]
+      copiedFavorites.splice(foundIndex, 1)
+      this.setState({
+        favorites: copiedFavorites
+      })
+    })
+    .catch(err => {
+      this.setState({
+        errMsg: err
+      })
+    })
   }
 
   componentDidMount() {
@@ -188,6 +230,7 @@ class App extends Component {
             : <FavoriteDisplay 
                 favList={this.state.favorites}
                 handlePosterClick={this.handlePosterClick}
+                removeFromFavorites={this.removeFromFavorites}
               />
           }
           {this.state.errMsg}

@@ -8,8 +8,26 @@ import missing from './images/imgNotFound.jpg'
 const MovieModal = ({ handleClose, show, children, movie, addToFavs }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
   const movieInfo = []
+  const blacklist = [
+    'Poster',
+    'Response',
+    'Ratings',
+    'Awards',
+    'Metascore',
+    'imdbRating',
+    'imdbVotes',
+    'imdbID',
+    'Type',
+    'DVD',
+    'BoxOffice',
+    'Production',
+    'Website'
+  ]
+
+  console.log('movie', movie)
+
   Object.keys(movie).forEach((key) => {
-    if (key !== 'Poster' && key !== 'Response' && key !== 'Ratings') {
+    if (!blacklist.includes(key)) {
       movieInfo.push(`${key}: ${movie[key]}`)
     }
   })
