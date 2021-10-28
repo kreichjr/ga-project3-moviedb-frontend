@@ -211,6 +211,32 @@ class App extends Component {
       })
   }
 
+  toggleCheckbox = (id, state) => {
+    const url = `${backendUrl}/${id}`
+    const update = {
+      hasWatched: !state
+    }
+    fetch(url, {
+      method: 'PUT',
+      body: JSON.stringify(update),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (res.status === 400) throw new Error('There was an error updating an item in your favorites list.')
+      return res.json()
+    })
+    .then(updatedFav => {
+      const foundIndex = this.state.favorites.findIndex(favorite => favorite._id === id)
+      const copiedFavorites = [...this.state.favorites]
+      copiedFavorites[foundIndex] = updatedFav
+      this.setState({
+        favorites: copiedFavorites
+      })
+    })
+  }
+
   componentDidMount() {
     this.getFavorites()
   }
@@ -246,6 +272,7 @@ class App extends Component {
               favList={this.state.favorites}
               handlePosterClick={this.handlePosterClick}
               removeFromFavorites={this.removeFromFavorites}
+              toggleCheckbox={this.toggleCheckbox}
             />
           )}
           {this.state.errMsg}

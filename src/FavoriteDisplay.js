@@ -22,6 +22,13 @@ const FavoriteDisplay = (props) => {
           <br/>
           
             <h3>{movie.title.length <= 28 ? movie.title : movie.title.substring(0, 25) + '...'}</h3>
+            <input 
+              id="viewed-checkbox"
+              type="checkbox" 
+              onClick={() => {props.toggleCheckbox(movie._id, movie.hasWatched)}}
+              checked={movie.hasWatched ? 'checked': ''} 
+            />
+            <label htmlFor="viewed-checkbox">Viewed</label>
             <button onClick={()=>{props.removeFromFavorites(movie._id)}}>Remove from Favorites</button>
           
         </div>
