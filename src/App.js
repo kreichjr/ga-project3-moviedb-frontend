@@ -1,12 +1,13 @@
-import './App.css';
-import './ModalStyling.css';
-import React, { Component } from 'react';
-import MovieSearchResults from './MovieSearchResults';
-import MovieSearchDisplay from './MovieSearchDisplay';
-import DisplayModal from './DisplayModal';
+import './App.css'
+import './ModalStyling.css'
+import React, { Component } from 'react'
+import MovieSearchResults from './MovieSearchResults'
+import MovieSearchDisplay from './MovieSearchDisplay'
+import DisplayModal from './DisplayModal'
 import FavoriteDisplay from './FavoriteDisplay'
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3003/favorites'
+const backendUrl =
+  process.env.REACT_APP_BACKEND_URL || 'http://localhost:3003/favorites'
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class App extends Component {
 
   toggleSearch = () => {
     this.setState({
-      showSearch: !this.state.showSearch
+      showSearch: !this.state.showSearch,
     })
   }
 
@@ -96,7 +97,8 @@ class App extends Component {
 
     fetch(url)
       .then((response) => {
-        if (response.status === 400) throw new Error('There was an error getting data from the OMDB API')
+        if (response.status === 400)
+          throw new Error('There was an error getting data from the OMDB API')
         return response.json()
       })
       .then((data) => {
@@ -104,9 +106,9 @@ class App extends Component {
           selectedMovie: data,
         })
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
-          errMsg: err
+          errMsg: err,
         })
       })
     setTimeout(() => {
@@ -146,7 +148,8 @@ class App extends Component {
       },
     })
       .then((res) => {
-        if (res.status === 400) throw new Error('There was an error creating a new favorite.')
+        if (res.status === 400)
+          throw new Error('There was an error creating a new favorite.')
         return res.json()
       })
       .then((createdFavorite) => {
@@ -155,9 +158,9 @@ class App extends Component {
           favorites: copiedFavorites,
         })
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
-          errMsg: err
+          errMsg: err,
         })
       })
   }
@@ -166,7 +169,8 @@ class App extends Component {
     const url = `${backendUrl}`
     fetch(url)
       .then((res) => {
-        if (res.status === 400) throw new Error('There was an error getting the favorites list.')
+        if (res.status === 400)
+          throw new Error('There was an error getting the favorites list.')
         return res.json()
       })
       .then((data) => {
@@ -176,7 +180,7 @@ class App extends Component {
       })
       .catch((err) => {
         this.setState({
-          errMsg: err
+          errMsg: err,
         })
       })
   }
@@ -186,20 +190,25 @@ class App extends Component {
     fetch(url, {
       method: 'DELETE',
     })
-    .then(res => {
-      if (res.status === 400) throw new Error('There was an error deleting an item from your favorites list.')
-      const foundIndex = this.state.favorites.findIndex(favorite => favorite._id === id)
-      const copiedFavorites = [...this.state.favorites]
-      copiedFavorites.splice(foundIndex, 1)
-      this.setState({
-        favorites: copiedFavorites
+      .then((res) => {
+        if (res.status === 400)
+          throw new Error(
+            'There was an error deleting an item from your favorites list.'
+          )
+        const foundIndex = this.state.favorites.findIndex(
+          (favorite) => favorite._id === id
+        )
+        const copiedFavorites = [...this.state.favorites]
+        copiedFavorites.splice(foundIndex, 1)
+        this.setState({
+          favorites: copiedFavorites,
+        })
       })
-    })
-    .catch(err => {
-      this.setState({
-        errMsg: err
+      .catch((err) => {
+        this.setState({
+          errMsg: err,
+        })
       })
-    })
   }
 
   toggleCheckbox = (id, state) => {
@@ -246,35 +255,42 @@ class App extends Component {
             src='https://i.imgur.com/wlPqD4c.png'
             alt='movie film and popcorn'
           />
-          <button onClick={this.toggleSearch}>{this.state.showSearch ? 'Show Favorites' : 'Show Movie Search'}</button>
-          {this.state.showSearch ?
+          <button
+            className='searchAndBtnRow showfav'
+            onClick={this.toggleSearch}
+          >
+            {this.state.showSearch ? 'Show Favorites' : 'Show Movie Search'}
+          </button>
+          {this.state.showSearch ? (
             <MovieSearchResults
               handleChange={this.handleChange}
               title={this.state.titleSearchField}
               handleSubmit={this.handleSubmit}
             />
-            : <FavoriteDisplay 
-                favList={this.state.favorites}
-                handlePosterClick={this.handlePosterClick}
-                removeFromFavorites={this.removeFromFavorites}
-                toggleCheckbox={this.toggleCheckbox}
-              />
-          }
+
+          ) : (
+            <FavoriteDisplay
+              favList={this.state.favorites}
+              handlePosterClick={this.handlePosterClick}
+              removeFromFavorites={this.removeFromFavorites}
+              toggleCheckbox={this.toggleCheckbox}
+            />
+          )}
+
           {this.state.errMsg}
         </div>
-        
+
         <div className='movie-app'>
-          {
-            this.state.movieList.length > 0 && 
-            <MovieSearchDisplay 
-              movieList={this.state.movieList} 
+          {this.state.movieList.length > 0 && (
+            <MovieSearchDisplay
+              movieList={this.state.movieList}
               handlePosterClick={this.handlePosterClick}
             />
-          }
-          
-          <DisplayModal 
-            openModal={this.openModal} 
-            closeModal={this.closeModal} 
+          )}
+
+          <DisplayModal
+            openModal={this.openModal}
+            closeModal={this.closeModal}
             show={this.state.modalOpen}
             movie={this.state.selectedMovie}
             addToFavs={this.addToFavs}
