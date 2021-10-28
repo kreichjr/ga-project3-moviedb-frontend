@@ -29,5 +29,4 @@ const MovieSearchDisplay = (props) => {
   )
 }
 
-
 export default MovieSearchDisplay

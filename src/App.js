@@ -1,12 +1,12 @@
-import './App.css'
-import './ModalStyling.css'
-import React, { Component } from 'react'
-import MovieSearchResults from './MovieSearchResults'
-import MovieSearchDisplay from './MovieSearchDisplay'
-import DisplayModal from './DisplayModal'
+import './App.css';
+import './ModalStyling.css';
+import React, { Component } from 'react';
+import MovieSearchResults from './MovieSearchResults';
+import MovieSearchDisplay from './MovieSearchDisplay';
+import DisplayModal from './DisplayModal';
+import FavoriteDisplay from './FavoriteDisplay'
 
-const backendUrl =
-  process.env.REACT_APP_BACKEND_URL || 'http://localhost:3003/favorites'
+const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3003/favorites'
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +24,7 @@ class App extends Component {
       modalOpen: false,
       selectedMovie: {},
       favorites: [],
+      showSearch: true,
 
       title: '',
       year: '',
@@ -34,6 +35,12 @@ class App extends Component {
       runtime: '',
       hasWatched: true,
     }
+  }
+
+  toggleSearch = () => {
+    this.setState({
+      showSearch: !this.state.showSearch
+    })
   }
 
   handleChange = (event) => {
@@ -171,25 +178,33 @@ class App extends Component {
             src='https://i.imgur.com/wlPqD4c.png'
             alt='movie film and popcorn'
           />
-          <MovieSearchResults
-            handleChange={this.handleChange}
-            title={this.state.titleSearchField}
-            handleSubmit={this.handleSubmit}
-          />
+          <button onClick={this.toggleSearch}>{this.state.showSearch ? 'Show Favorites' : 'Show Movie Search'}</button>
+          {this.state.showSearch ?
+            <MovieSearchResults
+              handleChange={this.handleChange}
+              title={this.state.titleSearchField}
+              handleSubmit={this.handleSubmit}
+            />
+            : <FavoriteDisplay 
+                favList={this.state.favorites}
+                handlePosterClick={this.handlePosterClick}
+              />
+          }
           {this.state.errMsg}
         </div>
-
+        
         <div className='movie-app'>
-          {this.state.movieList.length > 0 && (
-            <MovieSearchDisplay
-              movieList={this.state.movieList}
+          {
+            this.state.movieList.length > 0 && 
+            <MovieSearchDisplay 
+              movieList={this.state.movieList} 
               handlePosterClick={this.handlePosterClick}
             />
-          )}
-
-          <DisplayModal
-            openModal={this.openModal}
-            closeModal={this.closeModal}
+          }
+          
+          <DisplayModal 
+            openModal={this.openModal} 
+            closeModal={this.closeModal} 
             show={this.state.modalOpen}
             movie={this.state.selectedMovie}
             addToFavs={this.addToFavs}
