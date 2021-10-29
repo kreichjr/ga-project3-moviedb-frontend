@@ -12,8 +12,8 @@
 .modal-view {
   position: fixed;
   background: rgb(36, 174, 184);
-  width: 50%;
-  height: 500px;
+  width: 70%;
+  height: 700px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -28,12 +28,16 @@
 }
 
 .movieModal-poster {
-  height: 300px;
-  width: 200px;
+  height: 400px;
+  width: 310px;
   margin: auto;
   padding-left: 200px;
   padding-right: 200px;
   padding-top: 90px;
   float: right;
   /* need to make this responsive to smaller screens */
+}
+button {
+  height: 8%;
+
 }

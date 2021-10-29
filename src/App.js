@@ -252,7 +252,7 @@ class App extends Component {
         <div className='App'>
           <img
             className='logo'
-            src='https://i.imgur.com/wlPqD4c.png'
+            src='https://i.imgur.com/8C9PjKo.png'
             alt='movie film and popcorn'
           />
           

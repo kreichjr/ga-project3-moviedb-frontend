@@ -1,20 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 body {
-  /* background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(https://media.istockphoto.com/vectors/movie-time-vector-illustration-cinema-poster-concept-on-red-round-vector-id911590226?k=20&m=911590226&s=612x612&w=0&h=HlJtSKF-fLsKFy1QJ-EVnxXkktBKNS-3jUQPXsSasYs=)
+  background: url('./images/movie-background.jpg')
       center/cover no-repeat fixed;
   position: relative;
   overflow-x: hidden;
 
-  font-family: 'Roboto', sans-serif; */
-
-  /* background-image: 'https://imgur.com/dXB5cfN'; */
-  /* background: linear-gradient(rgba(230, 216, 216, 0.6), rgba(225, 206, 206, 0.6)), */
-  background: url(https://imgur.com/dXB5cfN) no-repeat center center fixed;
-  background-size: cover;
-  position: relative;
-  height: auto;
-  max-width: 720px;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -32,19 +22,18 @@ h3 {
 }
 
 .searchAndBtnRow {
-  align-items: center;
   display: flex;
   flex-direction: row;
-}
-
-.showFav {
-  display: flex;
-  transform: translate(50px, 100px);
+  border-radius: 1px 1px 1px 1px; 
+  height: 60px;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  margin-top: 18px;
+  margin-left: 15%;
 }
 
 input {
   width: 40%;
-  border: 10px solid #0aa7c0;
   margin: 20px;
   padding: 20px;
   height: 20px;
@@ -55,13 +44,19 @@ input {
 }
 
 .inputBtn {
-  background-color: #fe0001;
-  font-size: 25px;
-  width: 15%;
-  height: 20%;
+  background-color: #fe1100;
+  font-size: 26px;
+  text-align: center;
+  font-family: Helvetica;
+  border-radius: 1px 3px 3px 1px;
+  width: 10%;
+  height: 65px;
   transition: background-color 1s;
   font-weight: bold;
   display: flex;
+  margin-left: -20px;
+  margin-bottom: 10px;
+  margin-right: 1px;
 }
 
 .inputBtn:hover {
@@ -72,7 +67,9 @@ img {
   height: 400px;
   width: 300px;
 }
-
+.logo {
+  padding-bottom: 40px;
+}
 .App {
   text-align: center;
 }
@@ -89,29 +86,3 @@ img {
   margin-right: 5px;
   max-width: 2000px;
 }
-
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-} */
