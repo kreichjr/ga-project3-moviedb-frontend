@@ -274,6 +274,7 @@ class App extends Component {
               showSearch={this.state.showSearch}
             />
           )}
+
           {this.state.errMsg}
         </div>
 

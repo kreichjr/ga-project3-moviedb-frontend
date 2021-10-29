@@ -22,6 +22,50 @@ h3 {
 }
 
 .searchAndBtnRow {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.showFav {
+  display: flex;
+  transform: translate(50px, 100px);
+}
+
+input {
+  width: 40%;
+  border: 10px solid #0aa7c0;
+  margin: 20px;
+  padding: 20px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  font-size: 20px;
+  display: flex;
+}
+
+.inputBtn {
+  background-color: #fe0001;
+  font-size: 25px;
+  width: 15%;
+  height: 20%;
+  transition: background-color 1s;
+  font-weight: bold;
+  display: flex;
+}
+
+.inputBtn:hover {
+  background-color: #cb0000;
+}
+
+img {
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  padding-top: 30px;
+}
+
+.searchAndBtnRow {
   display: flex;
   flex-direction: row;
   border-radius: 1px 1px 1px 1px; 
@@ -76,6 +120,32 @@ img {
 .container-fluid {
   background-color: #cccccf;
   justify-content: space-around;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 2%;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  max-width: 2000px;
+}
+
+/* .App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
