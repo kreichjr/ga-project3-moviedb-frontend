@@ -1,5 +1,3 @@
-/* We could  use some of this styling if the modal works */
-
 .modal {
   position: fixed;
   top: 0;
@@ -17,6 +15,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: Helvetica, sans-serif;
+  font-size: 19px;
+  padding-top: 4.5%;
 }
 
 .display-block {
@@ -29,17 +30,32 @@
 
 .movieModal-poster {
   height: 400px;
-  width: 310px;
+  width: 300px;
   margin: auto;
   padding-left: 200px;
-  padding-right: 200px;
-  padding-top: 90px;
+  padding-right: 175px;
+  padding-top: 1.5%;
   float: right;
-  /* need to make this responsive to smaller screens */
 }
 
 button {
   height: 8%;
-
+  margin-left: 3%;
+  margin-right: -2.45%;
+  padding-right: .7%;
+  margin-bottom: 7%;
+  border-radius: 3px 3px 3px 3px;
+  text-align: center;
+  font-family: "Verdana";
+  font-weight: 551;
+  background-color:mintcream;
+  outline: solid 1px #050505;
 }
+button:hover{
+  color: #0f9ba0;
+  font-size:medium;
+  border: #5f5d5d solid 1.5px;
+  background:#fff;
+}
+
 

@@ -21,18 +21,18 @@ h3 {
   padding-top: 30px;
 }
 
-.searchAndBtnRow {
+/* .searchAndBtnRow {
   align-items: center;
   display: flex;
   flex-direction: row;
-}
+} */
 
-.showFav {
+/* .showFav {
   display: flex;
   transform: translate(50px, 100px);
-}
+} */
 
-input {
+/* input {
   width: 40%;
   border: 10px solid #0aa7c0;
   margin: 20px;
@@ -42,9 +42,9 @@ input {
   outline: none;
   font-size: 20px;
   display: flex;
-}
+} */
 
-.inputBtn {
+/* .inputBtn {
   background-color: #fe0001;
   font-size: 25px;
   width: 15%;
@@ -52,16 +52,16 @@ input {
   transition: background-color 1s;
   font-weight: bold;
   display: flex;
-}
-
+} */
+/* 
 .inputBtn:hover {
   background-color: #cb0000;
-}
+} */
 
 img {
   height: 400px;
   width: 400px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   padding-top: 30px;
 }
 
@@ -91,7 +91,7 @@ input {
   background-color: #fe1100;
   font-size: 26px;
   text-align: center;
-  font-family: Helvetica;
+  font-family: "Helvetica";
   border-radius: 1px 3px 3px 1px;
   width: 10%;
   height: 65px;
@@ -107,10 +107,10 @@ input {
   background-color: #cb0000;
 }
 
-img {
+/* img {
   height: 400px;
   width: 300px;
-}
+} */
 .logo {
   padding-bottom: 40px;
 }
@@ -130,6 +130,9 @@ img {
   margin-left: 5px;
   margin-right: 5px;
   max-width: 2000px;
+}
+.showfav {
+  background: rgb(36, 174, 184);
 }
 
 /* .App-logo {
@@ -155,4 +158,4 @@ img {
   margin-left: 5px;
   margin-right: 5px;
   max-width: 2000px;
-}
+}*/
