@@ -107,9 +107,7 @@ class App extends Component {
         })
       })
       .catch((err) => {
-        this.setState({
-          errMsg: err,
-        })
+        console.log(err)
       })
     setTimeout(() => {
       this.openModal()
@@ -159,9 +157,7 @@ class App extends Component {
         })
       })
       .catch((err) => {
-        this.setState({
-          errMsg: err,
-        })
+        console.log(err)
       })
   }
 
@@ -179,9 +175,7 @@ class App extends Component {
         })
       })
       .catch((err) => {
-        this.setState({
-          errMsg: err,
-        })
+        console.log(err)
       })
   }
 
@@ -205,9 +199,7 @@ class App extends Component {
         })
       })
       .catch((err) => {
-        this.setState({
-          errMsg: err,
-        })
+        console.log(err)
       })
   }
 
