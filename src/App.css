@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 body {
-  background: url('./images/movie-background.jpg')
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('./images/movie-background.jpg')
       center/cover no-repeat fixed;
   position: relative;
   overflow-x: hidden;
@@ -158,6 +159,7 @@ input {
   margin-left: 5px;
   margin-right: 5px;
   max-width: 2000px;
+<<<<<<< HEAD
 
 } */
 
