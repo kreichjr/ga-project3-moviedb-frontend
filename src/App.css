@@ -136,6 +136,9 @@ input {
   background: rgb(36, 174, 184);
 }
 
+.showfav {
+  background: rgb(36, 174, 184);
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
